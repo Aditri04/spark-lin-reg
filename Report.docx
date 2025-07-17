@@ -1,0 +1,29 @@
+
+
+currently using breeze,  https://github.com/scalanlp/breeze
+
+
+// val xt = spark.sql("""
+      // Select x.colIndex as rowIndex,
+      //       x.rowIndex as colIndex,
+      //       x.value as value
+      //       FROM X x
+      // """)
+      // xt.show()
+      // xt.createOrReplaceTempView("XT")
+
+      
+
+      // val xtx = spark.sql(
+      //   """
+      //     SELECT
+      //       xt.rowIndex AS i,
+      //       x.colIndex AS j,
+      //       SUM(xt.value * x.value) AS value
+      //     FROM XT xt INNER JOIN X x  on xt.colIndex = x.rowIndex
+      //     GROUP BY  x.colIndex, xt.rowIndex
+          
+      //   """
+      // )
+
+      // xtx.show()
