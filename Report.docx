@@ -1,6 +1,13 @@
 
+11 July: fixed the closed form inner product function
+            Next Task: Compare with spark implementation of linear regression
+18 July:  Used linear regression from spark ml library and compared its performance with closed form inner product and outer product weights
+            
+            Next Task: 
 
-currently using breeze,  https://github.com/scalanlp/breeze
+
+
+
 
 
 // val xt = spark.sql("""
