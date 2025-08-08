@@ -6,6 +6,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
+
 import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.ml.linalg.Vectors
 import org.apache.spark.ml.linalg.SparseVector
@@ -23,7 +24,8 @@ object LinearRegressionApp {
     def initializa_spark() = {
        SparkSession.builder
       .appName("LocalLinearRegressionWithBreeze")
-      .master("local[2]") // Use all available cores on the local machine
+      //.master("local-cluster[2,2,2048]") 
+      .master("local[*]")
       .getOrCreate()
     }
 
@@ -230,7 +232,6 @@ object LinearRegressionApp {
 
         (rowIndex, label, shiftedTriplets)
       }
-
       
       val y = combinedRDD.map { case (rowIndex, label, _) =>
         (rowIndex, label)
@@ -280,7 +281,12 @@ object LinearRegressionApp {
 
     
 
-    val lr = new LinearRegression()
+    val lr = new LinearRegression().setSolver("normal")
+
+        println("parameters of model:")
+    lr.extractParamMap().toSeq.foreach { paramPair =>
+      println(s"${paramPair.param.name}: ${paramPair.value}")
+    } 
     t1 = System.nanoTime
     val model = lr.fit(training)
     t2 =(System.nanoTime - t1) / 1e9d

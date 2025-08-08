@@ -1,0 +1,88 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/08/08 03:11:15 WARN Utils: Your hostname, Aditris-MacBook-Air.local, resolves to a loopback address: 127.0.0.1; using 10.188.225.68 instead (on interface en0)
+25/08/08 03:11:15 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/08/08 03:11:16 INFO SparkContext: Running Spark version 4.0.0
+25/08/08 03:11:16 INFO SparkContext: OS info Mac OS X, 15.5, aarch64
+25/08/08 03:11:16 INFO SparkContext: Java version 17.0.15
+25/08/08 03:11:16 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/08/08 03:11:16 INFO ResourceUtils: ==============================================================
+25/08/08 03:11:16 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/08/08 03:11:16 INFO ResourceUtils: ==============================================================
+25/08/08 03:11:16 INFO SparkContext: Submitted application: LocalLinearRegressionWithBreeze
+25/08/08 03:11:16 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/08/08 03:11:16 INFO ResourceProfile: Limiting resource is cpu
+25/08/08 03:11:16 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/08/08 03:11:16 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:11:16 INFO Utils: Successfully started service 'sparkDriver' on port 53156.
+25/08/08 03:11:16 INFO SparkEnv: Registering MapOutputTracker
+25/08/08 03:11:16 INFO SparkEnv: Registering BlockManagerMaster
+25/08/08 03:11:16 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/08/08 03:11:16 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/08/08 03:11:16 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/08/08 03:11:16 INFO DiskBlockManager: Created local directory at /private/var/folders/7z/wxz6x_6n2837nypm1bm752nr0000gn/T/blockmgr-96332184-b7a8-49a4-a42c-8121afc39889
+25/08/08 03:11:16 INFO SparkEnv: Registering OutputCommitCoordinator
+25/08/08 03:11:16 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/08/08 03:11:16 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/08/08 03:11:16 INFO SparkContext: Added JAR file:/Users/aditrichaudhari/Desktop/spark-lin-reg/target/scala-2.13/SparkLinearRegression-assembly-1.0.jar at spark://10.188.225.68:53156/jars/SparkLinearRegression-assembly-1.0.jar with timestamp 1754640676053
+25/08/08 03:11:16 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:11:16 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:11:16 INFO Executor: Starting executor ID driver on host 10.188.225.68
+25/08/08 03:11:16 INFO Executor: OS info Mac OS X, 15.5, aarch64
+25/08/08 03:11:16 INFO Executor: Java version 17.0.15
+25/08/08 03:11:16 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/08/08 03:11:16 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@4ab66127 for default.
+25/08/08 03:11:16 INFO Executor: Fetching spark://10.188.225.68:53156/jars/SparkLinearRegression-assembly-1.0.jar with timestamp 1754640676053
+25/08/08 03:11:16 INFO TransportClientFactory: Successfully created connection to /10.188.225.68:53156 after 10 ms (0 ms spent in bootstraps)
+25/08/08 03:11:16 INFO Utils: Fetching spark://10.188.225.68:53156/jars/SparkLinearRegression-assembly-1.0.jar to /private/var/folders/7z/wxz6x_6n2837nypm1bm752nr0000gn/T/spark-9c862957-f8f2-4c21-bf9e-6dde2bcf7d00/userFiles-2cf32a18-3cd5-4a6f-ac11-6914599b59b7/fetchFileTemp12363103611886448939.tmp
+25/08/08 03:11:16 INFO Executor: Adding file:/private/var/folders/7z/wxz6x_6n2837nypm1bm752nr0000gn/T/spark-9c862957-f8f2-4c21-bf9e-6dde2bcf7d00/userFiles-2cf32a18-3cd5-4a6f-ac11-6914599b59b7/SparkLinearRegression-assembly-1.0.jar to class loader default
+25/08/08 03:11:16 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 53158.
+25/08/08 03:11:16 INFO NettyBlockTransferService: Server created on 10.188.225.68:53158
+25/08/08 03:11:16 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/08/08 03:11:16 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.188.225.68, 53158, None)
+25/08/08 03:11:16 INFO BlockManagerMasterEndpoint: Registering block manager 10.188.225.68:53158 with 434.4 MiB RAM, BlockManagerId(driver, 10.188.225.68, 53158, None)
+25/08/08 03:11:16 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.188.225.68, 53158, None)
+25/08/08 03:11:16 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.188.225.68, 53158, None)
+25/08/08 03:11:18 WARN LibSVMFileFormat: 'numFeatures' option not specified, determining the number of features by going though the input. If you know the number in advance, please specify it via 'numFeatures' option to avoid the extra scan.
+parameters of model:
+maxIter: 100
+epsilon: 1.35
+featuresCol: features
+elasticNetParam: 0.0
+aggregationDepth: 2
+loss: squaredError
+solver: normal
+standardization: true
+fitIntercept: true
+tol: 1.0E-6
+regParam: 0.0
+predictionCol: prediction
+maxBlockSizeInMB: 0.0
+labelCol: label
+25/08/08 03:11:18 WARN Instrumentation: [6e6c35f4] regParam is zero, which might cause numerical instability and overfitting.
+25/08/08 03:11:19 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+25/08/08 03:11:19 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
+------------------------------------
+Final Calculated Weights using ml linear regression library:
+(coefficient,[0.0073350710225801715,0.8313757584337543,-0.8095307954684084,2.441191686884721,0.5191713795290003,1.1534591903547016,-0.2989124112808717,-0.5128514186201779,-0.619712827067017,0.6956151804322931])
+(intercept,0.14228558260358093)
+(Time taken,0.476435833)
+------------------------------------
+------------------------------------
+Final Calculated Weights using inner product with input partitioned:
+DenseVector(0.1422855826035822, 0.007335071022580263, 0.8313757584337556, -0.8095307954684091, 2.4411916868847214, 0.5191713795289996, 1.1534591903546996, -0.2989124112808698, -0.5128514186201778, -0.6197128270670198, 0.6956151804322932)
+(Time taken,1.831660792)
+------------------------------------
+------------------------------------
+Final Calculated Weights using Outer product with input partitioned:
+DenseVector(0.14228558260358204, 0.007335071022578361, 0.8313757584337568, -0.8095307954684101, 2.4411916868847214, 0.5191713795290023, 1.1534591903547002, -0.2989124112808716, -0.5128514186201788, -0.6197128270670189, 0.6956151804322948)
+(Time taken,0.958001875)
+------------------------------------

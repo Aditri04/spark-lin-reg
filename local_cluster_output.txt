@@ -1,0 +1,165 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/08/08 03:09:18 WARN Utils: Your hostname, Aditris-MacBook-Air.local, resolves to a loopback address: 127.0.0.1; using 10.188.225.68 instead (on interface en0)
+25/08/08 03:09:18 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/08/08 03:09:18 INFO SparkContext: Running Spark version 4.0.0
+25/08/08 03:09:18 INFO SparkContext: OS info Mac OS X, 15.5, aarch64
+25/08/08 03:09:18 INFO SparkContext: Java version 17.0.15
+25/08/08 03:09:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO SparkContext: Submitted application: LocalLinearRegressionWithBreeze
+25/08/08 03:09:19 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/08/08 03:09:19 INFO ResourceProfile: Limiting resource is cpu
+25/08/08 03:09:19 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO Utils: Successfully started service 'sparkDriver' on port 53105.
+25/08/08 03:09:19 INFO SparkEnv: Registering MapOutputTracker
+25/08/08 03:09:19 INFO SparkEnv: Registering BlockManagerMaster
+25/08/08 03:09:19 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/08/08 03:09:19 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/08/08 03:09:19 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/08/08 03:09:19 INFO DiskBlockManager: Created local directory at /private/var/folders/7z/wxz6x_6n2837nypm1bm752nr0000gn/T/blockmgr-e699d85e-dee8-4d5a-94bc-0b2fea1cc8d2
+25/08/08 03:09:19 INFO SparkEnv: Registering OutputCommitCoordinator
+25/08/08 03:09:19 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/08/08 03:09:19 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/08/08 03:09:19 INFO SparkContext: Added JAR file:/Users/aditrichaudhari/Desktop/spark-lin-reg/target/scala-2.13/SparkLinearRegression-assembly-1.0.jar at spark://10.188.225.68:53105/jars/SparkLinearRegression-assembly-1.0.jar with timestamp 1754640558959
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO LocalSparkCluster: Starting a local Spark cluster with 2 workers.
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO Utils: Successfully started service 'sparkMaster' on port 53106.
+25/08/08 03:09:19 INFO Master: Starting Spark master at spark://10.188.225.68:53106
+25/08/08 03:09:19 INFO Master: Running Spark version 4.0.0
+25/08/08 03:09:19 INFO JettyUtils: Start Jetty 0.0.0.0:0 for MasterUI
+25/08/08 03:09:19 INFO Utils: Successfully started service 'MasterUI' on port 53107.
+25/08/08 03:09:19 INFO MasterWebUI: Bound MasterWebUI to 0.0.0.0, and started at http://10.188.225.68:53107
+25/08/08 03:09:19 INFO Master: I have been elected leader! New state: ALIVE
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO Utils: Successfully started service 'sparkWorker1' on port 53108.
+25/08/08 03:09:19 INFO Worker: Worker decommissioning not enabled.
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO Worker: Starting Spark worker 10.188.225.68:53108 with 2 cores, 2.0 GiB RAM
+25/08/08 03:09:19 INFO Worker: Running Spark version 4.0.0
+25/08/08 03:09:19 INFO Worker: Spark home: /opt/homebrew/opt/apache-spark/libexec
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO ResourceUtils: No custom resources configured for spark.worker.
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO JettyUtils: Start Jetty 0.0.0.0:0 for WorkerUI
+25/08/08 03:09:19 INFO Utils: Successfully started service 'WorkerUI' on port 53109.
+25/08/08 03:09:19 INFO Utils: Successfully started service 'sparkWorker2' on port 53110.
+25/08/08 03:09:19 INFO Worker: Worker decommissioning not enabled.
+25/08/08 03:09:19 INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://10.188.225.68:53109
+25/08/08 03:09:19 INFO Worker: Starting Spark worker 10.188.225.68:53110 with 2 cores, 2.0 GiB RAM
+25/08/08 03:09:19 INFO Worker: Running Spark version 4.0.0
+25/08/08 03:09:19 INFO Worker: Spark home: /opt/homebrew/opt/apache-spark/libexec
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO ResourceUtils: No custom resources configured for spark.worker.
+25/08/08 03:09:19 INFO ResourceUtils: ==============================================================
+25/08/08 03:09:19 INFO JettyUtils: Start Jetty 0.0.0.0:0 for WorkerUI
+25/08/08 03:09:19 INFO Worker: Connecting to master 10.188.225.68:53106...
+25/08/08 03:09:19 INFO Utils: Successfully started service 'WorkerUI' on port 53111.
+25/08/08 03:09:19 INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://10.188.225.68:53111
+25/08/08 03:09:19 INFO Worker: Connecting to master 10.188.225.68:53106...
+25/08/08 03:09:19 INFO TransportClientFactory: Successfully created connection to /10.188.225.68:53106 after 10 ms (0 ms spent in bootstraps)
+25/08/08 03:09:19 INFO TransportClientFactory: Successfully created connection to /10.188.225.68:53106 after 10 ms (0 ms spent in bootstraps)
+25/08/08 03:09:19 INFO Master: Registering worker 10.188.225.68:53108 with 2 cores, 2.0 GiB RAM
+25/08/08 03:09:19 INFO Master: Registering worker 10.188.225.68:53110 with 2 cores, 2.0 GiB RAM
+25/08/08 03:09:19 INFO Worker: Successfully registered with master spark://10.188.225.68:53106
+25/08/08 03:09:19 INFO Worker: Successfully registered with master spark://10.188.225.68:53106
+25/08/08 03:09:19 INFO Worker: Worker cleanup enabled; old application directories will be deleted in: /opt/homebrew/opt/apache-spark/libexec/work
+25/08/08 03:09:19 INFO Worker: Worker cleanup enabled; old application directories will be deleted in: /opt/homebrew/opt/apache-spark/libexec/work
+25/08/08 03:09:19 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://10.188.225.68:53106...
+25/08/08 03:09:19 INFO TransportClientFactory: Successfully created connection to /10.188.225.68:53106 after 0 ms (0 ms spent in bootstraps)
+25/08/08 03:09:19 INFO Master: Registering app LocalLinearRegressionWithBreeze
+25/08/08 03:09:19 INFO Master: Registered app LocalLinearRegressionWithBreeze with ID app-20250808030919-0000
+25/08/08 03:09:19 INFO Master: Start scheduling for app app-20250808030919-0000 with rpId: 0
+25/08/08 03:09:19 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250808030919-0000
+25/08/08 03:09:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 53115.
+25/08/08 03:09:19 INFO NettyBlockTransferService: Server created on 10.188.225.68:53115
+25/08/08 03:09:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/08/08 03:09:19 INFO Master: Launching executor app-20250808030919-0000/0 on worker worker-20250808030919-10.188.225.68-53110
+25/08/08 03:09:19 INFO Master: Launching executor app-20250808030919-0000/1 on worker worker-20250808030919-10.188.225.68-53108
+25/08/08 03:09:19 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250808030919-0000/0 on worker-20250808030919-10.188.225.68-53110 (10.188.225.68:53110) with 2 core(s)
+25/08/08 03:09:19 INFO Worker: Asked to launch executor app-20250808030919-0000/1 for LocalLinearRegressionWithBreeze
+25/08/08 03:09:19 INFO Worker: Asked to launch executor app-20250808030919-0000/0 for LocalLinearRegressionWithBreeze
+25/08/08 03:09:19 INFO StandaloneSchedulerBackend: Granted executor ID app-20250808030919-0000/0 on hostPort 10.188.225.68:53110 with 2 core(s), 1024.0 MiB RAM
+25/08/08 03:09:19 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250808030919-0000/1 on worker-20250808030919-10.188.225.68-53108 (10.188.225.68:53108) with 2 core(s)
+25/08/08 03:09:19 INFO StandaloneSchedulerBackend: Granted executor ID app-20250808030919-0000/1 on hostPort 10.188.225.68:53108 with 2 core(s), 1024.0 MiB RAM
+25/08/08 03:09:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.188.225.68, 53115, None)
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing view acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: Changing modify acls groups to: aditrichaudhari
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO BlockManagerMasterEndpoint: Registering block manager 10.188.225.68:53115 with 434.4 MiB RAM, BlockManagerId(driver, 10.188.225.68, 53115, None)
+25/08/08 03:09:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aditrichaudhari groups with view permissions: EMPTY; users with modify permissions: aditrichaudhari; groups with modify permissions: EMPTY; RPC SSL disabled
+25/08/08 03:09:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.188.225.68, 53115, None)
+25/08/08 03:09:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.188.225.68, 53115, None)
+25/08/08 03:09:19 INFO ExecutorRunner: Launch command: "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home/bin/java" "-cp" "/opt/homebrew/opt/apache-spark/libexec/conf/:/opt/homebrew/opt/apache-spark/libexec/jars/slf4j-api-2.0.16.jar:/opt/homebrew/opt/apache-spark/libexec/jars/*" "-Xmx1024M" "-Dspark.driver.port=53105" "-Djava.net.preferIPv6Addresses=false" "-XX:+IgnoreUnrecognizedVMOptions" "--add-modules=jdk.incubator.vector" "--add-opens=java.base/java.lang=ALL-UNNAMED" "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED" "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED" "--add-opens=java.base/java.io=ALL-UNNAMED" "--add-opens=java.base/java.net=ALL-UNNAMED" "--add-opens=java.base/java.nio=ALL-UNNAMED" "--add-opens=java.base/java.util=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED" "--add-opens=java.base/jdk.internal.ref=ALL-UNNAMED" "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED" "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED" "--add-opens=java.base/sun.security.action=ALL-UNNAMED" "--add-opens=java.base/sun.util.calendar=ALL-UNNAMED" "--add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED" "-Djdk.reflect.useDirectMethodHandle=false" "-Dio.netty.tryReflectionSetAccessible=true" "org.apache.spark.executor.CoarseGrainedExecutorBackend" "--driver-url" "spark://CoarseGrainedScheduler@10.188.225.68:53105" "--executor-id" "0" "--hostname" "10.188.225.68" "--cores" "2" "--app-id" "app-20250808030919-0000" "--worker-url" "spark://Worker@10.188.225.68:53110" "--resourceProfileId" "0"
+25/08/08 03:09:19 INFO ExecutorRunner: Launch command: "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home/bin/java" "-cp" "/opt/homebrew/opt/apache-spark/libexec/conf/:/opt/homebrew/opt/apache-spark/libexec/jars/slf4j-api-2.0.16.jar:/opt/homebrew/opt/apache-spark/libexec/jars/*" "-Xmx1024M" "-Dspark.driver.port=53105" "-Djava.net.preferIPv6Addresses=false" "-XX:+IgnoreUnrecognizedVMOptions" "--add-modules=jdk.incubator.vector" "--add-opens=java.base/java.lang=ALL-UNNAMED" "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED" "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED" "--add-opens=java.base/java.io=ALL-UNNAMED" "--add-opens=java.base/java.net=ALL-UNNAMED" "--add-opens=java.base/java.nio=ALL-UNNAMED" "--add-opens=java.base/java.util=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED" "--add-opens=java.base/jdk.internal.ref=ALL-UNNAMED" "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED" "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED" "--add-opens=java.base/sun.security.action=ALL-UNNAMED" "--add-opens=java.base/sun.util.calendar=ALL-UNNAMED" "--add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED" "-Djdk.reflect.useDirectMethodHandle=false" "-Dio.netty.tryReflectionSetAccessible=true" "org.apache.spark.executor.CoarseGrainedExecutorBackend" "--driver-url" "spark://CoarseGrainedScheduler@10.188.225.68:53105" "--executor-id" "1" "--hostname" "10.188.225.68" "--cores" "2" "--app-id" "app-20250808030919-0000" "--worker-url" "spark://Worker@10.188.225.68:53108" "--resourceProfileId" "0"
+25/08/08 03:09:19 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/08/08 03:09:19 INFO Master: Start scheduling for app app-20250808030919-0000 with rpId: 0
+25/08/08 03:09:19 INFO Master: Start scheduling for app app-20250808030919-0000 with rpId: 0
+25/08/08 03:09:19 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250808030919-0000/0 is now RUNNING
+25/08/08 03:09:19 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250808030919-0000/1 is now RUNNING
+25/08/08 03:09:21 WARN LibSVMFileFormat: 'numFeatures' option not specified, determining the number of features by going though the input. If you know the number in advance, please specify it via 'numFeatures' option to avoid the extra scan.
+parameters of model:
+aggregationDepth: 2
+maxBlockSizeInMB: 0.0
+fitIntercept: true
+predictionCol: prediction
+maxIter: 100
+tol: 1.0E-6
+loss: squaredError
+epsilon: 1.35
+elasticNetParam: 0.0
+solver: normal
+regParam: 0.0
+labelCol: label
+featuresCol: features
+standardization: true
+25/08/08 03:09:23 WARN Instrumentation: [df018beb] regParam is zero, which might cause numerical instability and overfitting.
+25/08/08 03:09:24 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+25/08/08 03:09:24 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
+------------------------------------
+Final Calculated Weights using ml linear regression library:
+(coefficient,[0.0073350710225801715,0.8313757584337543,-0.8095307954684084,2.441191686884721,0.5191713795290003,1.1534591903547016,-0.2989124112808717,-0.5128514186201779,-0.619712827067017,0.6956151804322931])
+(intercept,0.14228558260358093)
+(Time taken,2.003828833)
+------------------------------------
+------------------------------------
+Final Calculated Weights using inner product with input partitioned:
+DenseVector(0.1422855826035822, 0.007335071022580263, 0.8313757584337556, -0.8095307954684091, 2.4411916868847214, 0.5191713795289996, 1.1534591903546996, -0.2989124112808698, -0.5128514186201778, -0.6197128270670198, 0.6956151804322932)
+(Time taken,3.009408625)
+------------------------------------
+------------------------------------
+Final Calculated Weights using Outer product with input partitioned:
+DenseVector(0.14228558260358204, 0.007335071022578361, 0.8313757584337568, -0.8095307954684101, 2.4411916868847214, 0.5191713795290023, 1.1534591903547002, -0.2989124112808716, -0.5128514186201788, -0.6197128270670189, 0.6956151804322948)
+(Time taken,1.349073292)
+------------------------------------
