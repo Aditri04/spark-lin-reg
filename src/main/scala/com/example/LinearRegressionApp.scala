@@ -8,6 +8,10 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.ml.linalg.SparseVector
+import org.apache.spark.sql.Row
+
+
 
 
 
@@ -19,7 +23,7 @@ object LinearRegressionApp {
     def initializa_spark() = {
        SparkSession.builder
       .appName("LocalLinearRegressionWithBreeze")
-      .master("local[*]") // Use all available cores on the local machine
+      .master("local[2]") // Use all available cores on the local machine
       .getOrCreate()
     }
 
@@ -160,8 +164,7 @@ object LinearRegressionApp {
       
 
       xtx.createOrReplaceTempView("xtx")
-
-      //seq-> list, 
+ 
 
       // Compute X^Ty
       val xty = spark.sql(
@@ -171,9 +174,8 @@ object LinearRegressionApp {
           GROUP BY X.colIndex
         """)
 
-        xty.createOrReplaceTempView("XTy")
-      
-      
+      xty.createOrReplaceTempView("XTy")
+
 
       val xtxArray = xtx.collect() //brings to driver memory
 
@@ -206,9 +208,48 @@ object LinearRegressionApp {
 
       val weights = XTX_inv * xtyVector
 
-
       weights
     }
+
+    def libsvmToCOO(training: DataFrame)(implicit spark: SparkSession): (DataFrame, DataFrame) = {
+      import spark.implicits._
+
+     
+      
+      val indexed = training.rdd.zipWithIndex()
+
+      
+      val combinedRDD = indexed.map { case (row: Row, rowIndex: Long) =>
+        val label = row.getAs[Double]("label")
+        val features = row.getAs[SparseVector]("features")
+
+        
+        val shiftedTriplets = features.indices.zip(features.values).map {
+          case (colIndex, value) => (rowIndex, colIndex.toLong + 1L, value)
+        }
+
+        (rowIndex, label, shiftedTriplets)
+      }
+
+      
+      val y = combinedRDD.map { case (rowIndex, label, _) =>
+        (rowIndex, label)
+      }.toDF("rowIndex", "value")
+
+      
+      val biasRDD = combinedRDD.map { case (rowIndex, _, _) =>
+        (rowIndex, 0L, 1.0)
+      }
+
+      val featuresRDD = combinedRDD.flatMap { case (_, _, triplets) => triplets }
+
+      val fullFeatureRDD = biasRDD.union(featuresRDD)
+
+      
+      val X = fullFeatureRDD.toDF("rowIndex", "colIndex", "value")
+
+      (X, y)
+}
 
   
 
@@ -221,9 +262,11 @@ object LinearRegressionApp {
     var t1 = 0.0
     var t2 = 0.0
     
-    val X = List( (0L, 0L, 1.0), (1L, 0L, 1.0),(2L, 0L, 1.0),(3L, 0L, 1.0), (4L, 0L, 1.0), (0L, 1L, 5.0), (1L, 1L, 7.0),(2L, 1L, 12.0),(3L, 1L, 16.0), (4L, 1L, 20.0)).toDF("rowIndex", "colIndex", "value")
-    val y = List((0L, 40.0), (1L, 120.0), (2L, 180.0), (3L, 210.0), (4L, 240.0)).toDF("rowIndex", "value")
-    val X_partitioned = X.repartition($"rowIndex")
+    // val X = List( (0L, 0L, 1.0), (1L, 0L, 1.0),(2L, 0L, 1.0),(3L, 0L, 1.0), (4L, 0L, 1.0), (0L, 1L, 5.0), (1L, 1L, 7.0),(2L, 1L, 12.0),(3L, 1L, 16.0), (4L, 1L, 20.0)).toDF("rowIndex", "colIndex", "value")
+    // val y = List((0L, 40.0), (1L, 120.0), (2L, 180.0), (3L, 210.0), (4L, 240.0)).toDF("rowIndex", "value")
+
+    
+    // val X_partitioned = X.repartition($"rowIndex")
     
     val data = List(
     (40.0, Vectors.dense(5.0)),
@@ -233,10 +276,13 @@ object LinearRegressionApp {
     (240.0, Vectors.dense(20.0))
     ).toDF("label", "features")
 
+    val training = spark.read.format("libsvm").load("sample_linear_regression_data.txt")
+
+    
 
     val lr = new LinearRegression()
     t1 = System.nanoTime
-    val model = lr.fit(data)
+    val model = lr.fit(training)
     t2 =(System.nanoTime - t1) / 1e9d
     val coefficients = model.coefficients
     val intercept = model.intercept
@@ -248,6 +294,12 @@ object LinearRegressionApp {
     println("Time taken", t2)
     println("------------------------------------")
 
+    
+    
+    val (x, y) = libsvmToCOO(training)
+    val X_partitioned = x.repartition($"rowIndex")
+    
+    
     // t1 = System.nanoTime
     // val weights_innerProduct = linearRegressionClosedForm_InnerProduct(X, y)(spark)
     // t2 =(System.nanoTime - t1) / 1e9d
@@ -290,7 +342,6 @@ object LinearRegressionApp {
     println("Time taken", t2)
     println("------------------------------------")
     
-
     
     spark.stop()
   }
