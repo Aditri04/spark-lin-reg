@@ -16,3 +16,4 @@ sbt clean compile
 sbt assembly
 spark-submit --class com.example.LinearRegressionApp target/scala-2.13/SparkLinearRegression-assembly-1.0.jar
 
+> local_cluster_output.txt 2>&1

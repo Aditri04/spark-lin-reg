@@ -2,35 +2,6 @@
 11 July: fixed the closed form inner product function
             Next Task: Compare with spark implementation of linear regression
 18 July:  Used linear regression from spark ml library and compared its performance with closed form inner product and outer product weights
-            
-            Next Task: 
 
 
 
-
-
-
-// val xt = spark.sql("""
-      // Select x.colIndex as rowIndex,
-      //       x.rowIndex as colIndex,
-      //       x.value as value
-      //       FROM X x
-      // """)
-      // xt.show()
-      // xt.createOrReplaceTempView("XT")
-
-      
-
-      // val xtx = spark.sql(
-      //   """
-      //     SELECT
-      //       xt.rowIndex AS i,
-      //       x.colIndex AS j,
-      //       SUM(xt.value * x.value) AS value
-      //     FROM XT xt INNER JOIN X x  on xt.colIndex = x.rowIndex
-      //     GROUP BY  x.colIndex, xt.rowIndex
-          
-      //   """
-      // )
-
-      // xtx.show()

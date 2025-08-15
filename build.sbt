@@ -11,7 +11,9 @@ scalaVersion := "2.13.16" // Or "2.12.18" if your Spark is compiled with Scala 2
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "4.0.0" % "provided", // Match your installed Spark version
   "org.apache.spark" %% "spark-sql" % "4.0.0" % "provided",   // Match your installed Spark version
-  "org.apache.spark" %% "spark-mllib" % "3.5.1"
+  "org.apache.spark" %% "spark-mllib" % "3.5.1",
+
+   
 )
 
 // Breeze Dependency (use 'compile' scope to bundle it into your fat JAR if needed, or 'provided' if you add it via --packages)

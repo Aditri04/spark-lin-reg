@@ -13,28 +13,17 @@ import org.apache.spark.ml.linalg.SparseVector
 import org.apache.spark.sql.Row
 
 
-
-
-
-
 object LinearRegressionApp {
 
   def main(args: Array[String]): Unit = {
 
-    def initializa_spark() = {
-       SparkSession.builder
-      .appName("LocalLinearRegressionWithBreeze")
-      //.master("local-cluster[2,2,2048]") 
-      .master("local[*]")
-      .getOrCreate()
-    }
 
-    def linearRegressionClosedForm_InnerProduct(X: DataFrame, y: DataFrame) (implicit spark: SparkSession): DenseVector[Double] = {
+    def linearRegressionClosedForm_InnerProduct(X: DataFrame, y: DataFrame, col_cnt: Int, spark: SparkSession) : DenseVector[Double] = {
       X.createOrReplaceTempView("X")
       y.createOrReplaceTempView("y")
 
       val row_count = y.count().toInt //returns a Long type //check slides for dims
-      val col_cnt = spark.sql("""Select count(*) from X group by rowIndex limit 1""").first().getLong(0).toInt
+      
       
      
       // val xt = spark.sql("""
@@ -108,8 +97,6 @@ object LinearRegressionApp {
         xtyVector(i) = value
       }
 
-      
-
       val weights = XTX_inv * xtyVector
 
       weights
@@ -117,21 +104,14 @@ object LinearRegressionApp {
     }
     
     // Linear regression using closed-form solution and outer product for X^T X
-    def linearRegressionClosedForm_OuterProduct(X: DataFrame, y: DataFrame)(implicit spark: SparkSession): DenseVector[Double] = {
-      
+    def linearRegressionClosedForm_OuterProduct(X: DataFrame, y: DataFrame, maxIndex: Int, spark: SparkSession): DenseVector[Double] = {
 
       X.createOrReplaceTempView("X")
       y.createOrReplaceTempView("y")
 
       // Aggregate values row-wise into vector (j, value) pairs
       // collect_list bring to driver mem?? separate .createOR
-      val rowVectors = spark.sql(
-        """
-          SELECT rowIndex, collect_list(array(colIndex, value)) AS rowVec
-          FROM X
-          GROUP BY rowIndex
-        """
-      )
+      val rowVectors = spark.sql("SELECT rowIndex, collect_list(array(colIndex, value)) AS rowVec FROM X GROUP BY rowIndex")
       
       rowVectors.createOrReplaceTempView("rowVectors")
 
@@ -164,7 +144,6 @@ object LinearRegressionApp {
         """
        )
       
-
       xtx.createOrReplaceTempView("xtx")
  
 
@@ -181,9 +160,7 @@ object LinearRegressionApp {
 
       val xtxArray = xtx.collect() //brings to driver memory
 
-
-      val maxIndex = spark.sql("SELECT COUNT(DISTINCT i) AS num_rows FROM xtx").first().getLong(0).toInt
-      //val maxIndex = spark.sql("SELECT GREATEST(MAX(i), MAX(j)) AS max_index FROM xtx").first().getInt(0)
+      
       val xtxMatrix = DenseMatrix.zeros[Double](maxIndex , maxIndex )
 
       xtxArray.foreach { row =>
@@ -213,11 +190,10 @@ object LinearRegressionApp {
       weights
     }
 
-    def libsvmToCOO(training: DataFrame)(implicit spark: SparkSession): (DataFrame, DataFrame) = {
+    def libsvmToCOO(training: DataFrame, spark: SparkSession): (DataFrame, DataFrame) = {
       import spark.implicits._
 
-     
-      
+
       val indexed = training.rdd.zipWithIndex()
 
       
@@ -225,7 +201,6 @@ object LinearRegressionApp {
         val label = row.getAs[Double]("label")
         val features = row.getAs[SparseVector]("features")
 
-        
         val shiftedTriplets = features.indices.zip(features.values).map {
           case (colIndex, value) => (rowIndex, colIndex.toLong + 1L, value)
         }
@@ -252,12 +227,15 @@ object LinearRegressionApp {
       (X, y)
 }
 
-  
-
 
     
-    implicit val spark: SparkSession = initializa_spark()
-    spark.sparkContext.setLogLevel("WARN")
+    implicit val spark: SparkSession =  SparkSession.builder
+      .appName("LocalLinearRegressionWithBreeze")
+      //.master("local-cluster[3,1,1024]") 
+      .master("local[*]")
+      .getOrCreate()
+
+    //spark.sparkContext.setLogLevel("WARN")
     import spark.implicits._
 
     var t1 = 0.0
@@ -269,13 +247,13 @@ object LinearRegressionApp {
     
     // val X_partitioned = X.repartition($"rowIndex")
     
-    val data = List(
-    (40.0, Vectors.dense(5.0)),
-    (120.0, Vectors.dense(7.0)),
-    (180.0, Vectors.dense(12.0)),
-    (210.0, Vectors.dense(16.0)),
-    (240.0, Vectors.dense(20.0))
-    ).toDF("label", "features")
+    // val data = List(
+    // (40.0, Vectors.dense(5.0)),
+    // (120.0, Vectors.dense(7.0)),
+    // (180.0, Vectors.dense(12.0)),
+    // (210.0, Vectors.dense(16.0)),
+    // (240.0, Vectors.dense(20.0))
+    // ).toDF("label", "features")
 
     val training = spark.read.format("libsvm").load("sample_linear_regression_data.txt")
 
@@ -283,7 +261,7 @@ object LinearRegressionApp {
 
     val lr = new LinearRegression().setSolver("normal")
 
-        println("parameters of model:")
+    println("parameters of model:")
     lr.extractParamMap().toSeq.foreach { paramPair =>
       println(s"${paramPair.param.name}: ${paramPair.value}")
     } 
@@ -302,8 +280,10 @@ object LinearRegressionApp {
 
     
     
-    val (x, y) = libsvmToCOO(training)
-    val X_partitioned = x.repartition($"rowIndex")
+    val (x, y) = libsvmToCOO(training, spark)
+    
+    //do not include
+    //val X_partitioned = x.repartition($"rowIndex")
     
     
     // t1 = System.nanoTime
@@ -318,11 +298,11 @@ object LinearRegressionApp {
 
 
     t1 = System.nanoTime
-    val weights_innerProduct_partitioned = linearRegressionClosedForm_InnerProduct(X_partitioned, y)(spark)
+    val weights_innerProduct_partitioned = linearRegressionClosedForm_InnerProduct(x, y, 11, spark)
     t2 =(System.nanoTime - t1) / 1e9d
     
     println("------------------------------------")
-    println("Final Calculated Weights using inner product with input partitioned:")
+    println("Final Calculated Weights using inner product")
     println(weights_innerProduct_partitioned)
     println("Time taken", t2)
     
@@ -339,16 +319,20 @@ object LinearRegressionApp {
     // println("------------------------------------")
 
     t1 = System.nanoTime
-    val weights_outerProduct_partitioned = linearRegressionClosedForm_OuterProduct(X_partitioned, y)(spark)
+    val weights_outerProduct_partitioned = linearRegressionClosedForm_OuterProduct(x, y, 11, spark)
     t2 =(System.nanoTime - t1) / 1e9d
     
     println("------------------------------------")
-    println("Final Calculated Weights using Outer product with input partitioned:")
+    println("Final Calculated Weights using Outer product")
     println(weights_outerProduct_partitioned)
     println("Time taken", t2)
     println("------------------------------------")
     
+    //input to keep program running to see output in sparkUI http://127.0.0.1:4040/
+    spark.sparkContext.setLogLevel("INFO")
+    println("Spark is running. Press ENTER to exit.")
+    scala.io.StdIn.readLine()
     
-    spark.stop()
+    //spark.stop()
   }
 }
