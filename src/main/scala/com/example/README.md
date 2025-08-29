@@ -16,4 +16,9 @@ sbt clean compile
 sbt assembly
 spark-submit --class com.example.LinearRegressionApp target/scala-2.13/SparkLinearRegression-assembly-1.0.jar
 
+--conf "spark.driver.extraJavaOptions=-Ddev.ludovic.netlib.blas.nativeLibPath=/opt/homebrew/opt/openblas/lib/libopenblas.dylib -Ddev.ludovic.netlib.lapack.nativeLibPath=/opt/homebrew/opt/lapack/lib/liblapack.dylib"  
+--conf "spark.executor.extraJavaOptions=-Ddev.ludovic.netlib.blas.nativeLibPath=/opt/homebrew/opt/openblas/lib/libopenblas.dylib -Ddev.ludovic.netlib.lapack.nativeLibPath=/opt/homebrew/opt/lapack/lib/liblapack.dylib" \
+
 > local_cluster_output.txt 2>&1
+
+spark-submit --conf "spark.driver.extraJavaOptions=-Ddev.ludovic.netlib.blas.nativeLibPath=/opt/homebrew/opt/openblas/lib/libopenblas.dylib -Ddev.ludovic.netlib.lapack.nativeLibPath=/opt/homebrew/opt/lapack/lib/liblapack.dylib" --conf "spark.executor.extraJavaOptions=-Ddev.ludovic.netlib.blas.nativeLibPath=/opt/homebrew/opt/openblas/lib/libopenblas.dylib -Ddev.ludovic.netlib.lapack.nativeLibPath=/opt/homebrew/opt/lapack/lib/liblapack.dylib" --class com.example.LinearRegressionApp target/scala-2.13/SparkLinearRegression-assembly-1.0.jar > local_cluster_output.txt 2>&1

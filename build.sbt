@@ -13,12 +13,23 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % "4.0.0" % "provided",   // Match your installed Spark version
   "org.apache.spark" %% "spark-mllib" % "3.5.1",
 
-   
+  "dev.ludovic.netlib" % "blas"   % "3.0.4",
+  "dev.ludovic.netlib" % "lapack" % "3.0.4",
+  "dev.ludovic.netlib" % "arpack" % "3.0.4"
+
 )
 
 // Breeze Dependency (use 'compile' scope to bundle it into your fat JAR if needed, or 'provided' if you add it via --packages)
 // The `%%` automatically appends the correct Scala binary version (_2.13 or _2.12)
 libraryDependencies += "org.scalanlp" %% "breeze" % "2.1.0"
+
+
+javaOptions ++= Seq(
+  "-Ddev.ludovic.netlib.blas.nativeLibPath=/opt/homebrew/opt/openblas/lib/libopenblas.dylib",
+  "-Ddev.ludovic.netlib.lapack.nativeLibPath=/opt/homebrew/opt/lapack/lib/liblapack.dylib",
+  "-Ddev.ludovic.netlib.arpack.nativeLibPath=/opt/homebrew/opt/arpack/lib/libarpack.dylib"
+)
+
 
 // Set up a main class for `spark-submit`
 mainClass := Some("com.example.LinearRegressionApp") // Change com.example if you use a package
